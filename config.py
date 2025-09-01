@@ -1,8 +1,8 @@
 TARGET_USERNAMES = [
     "zawyacinema",
     "adef.xyz",
-    "goetheinstitut_kairo",
-    "bwfcaravan",
+    # "goetheinstitut_kairo",
+    # "bwfcaravan",
     "eunicinegypt",
     ]
 
@@ -21,7 +21,7 @@ MEDIA_QUERY = (
     'edge_owner_to_timeline_media.edges[].node.'
     '{shortcode: shortcode, '
     'display_url: display_url, '
-    'date: taken_at_timestamp, '
+    'date: taken_at_timestamp, ' 
     'caption: edge_media_to_caption.edges[0].node.text,'
     'taken_at_timestamp: taken_at_timestamp, '
     'photos: edge_sidecar_to_children.edges[].node.display_url}'
