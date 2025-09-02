@@ -3,7 +3,7 @@ import logging
 import os
 from datetime import datetime
 
-from config import OUTPUT_DIR
+from ..config import OUTPUT_DIR
 
 
 def save_json_file(data, filename_prefix: str) -> str:

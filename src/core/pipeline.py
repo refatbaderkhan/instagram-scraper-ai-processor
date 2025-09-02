@@ -2,11 +2,10 @@ import logging
 import random
 import time
 
-from config import MAX_DELAY_SECONDS, MIN_DELAY_SECONDS, TARGET_USERNAMES
-from processing.transformer import transform_all_posts
-from scraper.parser import parse_media_posts
-from scraper.scraper import InstagramScraper
-
+from ..config import MAX_DELAY_SECONDS, MIN_DELAY_SECONDS, TARGET_USERNAMES
+from ..processing.transformer import transform_all_posts
+from ..scraper.parser import parse_media_posts
+from ..scraper.scraper import InstagramScraper
 from .file_handler import load_json_file, save_json_file
 
 

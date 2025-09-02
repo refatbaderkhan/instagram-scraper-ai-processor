@@ -2,7 +2,7 @@ from typing import Union
 
 import httpx
 
-from config import INSTAGRAM_HEADERS
+from ..config import INSTAGRAM_HEADERS
 
 
 class InstagramScraper:

@@ -1,11 +1,19 @@
 import argparse
 import logging
+import sys
+from pathlib import Path
 
-from core.pipeline import run_pipeline
+if __name__ == "__main__":
+    project_root = Path(__file__).parent.parent
+    sys.path.insert(0, str(project_root))
+
 from logging_config import setup_logging
+
+from .core.pipeline import run_pipeline
 
 
 def main():
+    setup_logging()
     setup_logging()
 
     parser = argparse.ArgumentParser(description="Scrape and process Instagram posts.")

@@ -2,7 +2,7 @@ from datetime import datetime
 
 import jmespath
 
-from config import MEDIA_QUERY
+from ..config import MEDIA_QUERY
 
 
 def parse_media_posts(raw_user_data: dict) -> list[dict]:
