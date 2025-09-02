@@ -44,15 +44,13 @@ def run_pipeline(args):
     all_parsed_posts = []
     for username, raw_user_data in all_raw_data.items():
         logging.info(f"Parsing posts for {username}...")
-        parsed_posts = parse_media_posts(raw_user_data)
-        for post in parsed_posts:
-            post["source_profile"] = username
+        parsed_posts = parse_media_posts(raw_user_data, username)
         all_parsed_posts.extend(parsed_posts)
 
-    logging.info(f"Starting enrichment for {len(all_parsed_posts)} posts...")
-    all_enriched_posts = transform_all_posts(all_parsed_posts)
+    logging.info(f"Starting transformation for {len(all_parsed_posts)} posts...")
+    all_transformed_posts = transform_all_posts(all_parsed_posts)
 
-    if all_enriched_posts:
-        save_json_file(all_enriched_posts, "filtered_posts")
+    if all_transformed_posts:
+        save_json_file(all_transformed_posts, "filtered_posts")
 
     logging.info("Pipeline finished.")

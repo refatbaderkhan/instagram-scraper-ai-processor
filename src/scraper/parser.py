@@ -5,7 +5,7 @@ import jmespath
 from ..config import MEDIA_QUERY
 
 
-def parse_media_posts(raw_user_data: dict) -> list[dict]:
+def parse_media_posts(raw_user_data: dict, username: str) -> list[dict]:
     if not raw_user_data:
         return []
 
@@ -18,18 +18,23 @@ def parse_media_posts(raw_user_data: dict) -> list[dict]:
             datetime.fromtimestamp(timestamp).isoformat() if timestamp else None
         )
 
-        photos = post.get("photos") or []
-        if isinstance(photos, list):
-            photos = [p for p in photos if p]
+        photos = []
+        if post.get("photos") and post["photos"].get("edges"):
+            for edge in post["photos"]["edges"]:
+                if edge.get("node") and edge["node"].get("display_url"):
+                    photos.append(edge["node"]["display_url"])
+        elif post.get("display_url"):
+            photos.append(post.get("display_url"))
 
         processed_post = {
+            "source": username,
             "shortcode": post.get("shortcode"),
             "post_url": f"https://www.instagram.com/p/{post.get('shortcode')}/",
             "display_url": post.get("display_url"),
             "post_date": readable_date,
             "timestamp": timestamp,
             "caption": post.get("caption"),
-            "photos": post.get("photos"),
+            "photos": photos,
         }
         processed_posts.append(processed_post)
 
