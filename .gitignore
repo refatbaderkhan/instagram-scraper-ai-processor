@@ -1,5 +1,27 @@
-venv/
-.pytest_cache/
 data/
 old_code/
-masahat_scraper.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# System files
+.DS_Store
+
+# Logs
+*.log
+
+# IDE files
+.vscode/
+.idea/
+
+# Testing
+.pytest_cache/
+
+# Build artifacts
+*.egg-info/

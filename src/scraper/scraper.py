@@ -1,10 +1,14 @@
-import httpx
-from config import INSTAGRAM_HEADERS
 from typing import Union
+
+import httpx
+
+from config import INSTAGRAM_HEADERS
 
 
 class InstagramScraper:
-    _BASE_URL = "https://i.instagram.com/api/v1/users/web_profile_info/?username={username}"
+    _BASE_URL = (
+        "https://i.instagram.com/api/v1/users/web_profile_info/?username={username}"
+    )
 
     def __init__(self):
         self.client = httpx.Client(headers=INSTAGRAM_HEADERS)
@@ -25,6 +29,6 @@ class InstagramScraper:
         except Exception as e:
             print(f"an unexpected error occurred: {e}")
             return None
-            
+
     def close(self):
         self.client.close()

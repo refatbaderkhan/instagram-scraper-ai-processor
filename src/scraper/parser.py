@@ -1,6 +1,9 @@
-import jmespath
 from datetime import datetime
+
+import jmespath
+
 from config import MEDIA_QUERY
+
 
 def parse_media_posts(raw_user_data: dict) -> list[dict]:
     if not raw_user_data:
@@ -10,9 +13,10 @@ def parse_media_posts(raw_user_data: dict) -> list[dict]:
     processed_posts = []
 
     for post in raw_posts:
-
         timestamp = post.get("taken_at_timestamp", 0)
-        readable_date = datetime.fromtimestamp(timestamp).isoformat() if timestamp else None
+        readable_date = (
+            datetime.fromtimestamp(timestamp).isoformat() if timestamp else None
+        )
 
         photos = post.get("photos") or []
         if isinstance(photos, list):
@@ -25,9 +29,8 @@ def parse_media_posts(raw_user_data: dict) -> list[dict]:
             "post_date": readable_date,
             "timestamp": timestamp,
             "caption": post.get("caption"),
-            "photos": post.get("photos")
+            "photos": post.get("photos"),
         }
         processed_posts.append(processed_post)
 
     return processed_posts
-
